@@ -1,0 +1,13 @@
+(defrecord HttpServer [server]
+
+  component/Lifecycle
+
+  (start [this]
+    (assoc this :server (http/start-server (handler (:store this)) {:port 8080})))
+
+  (stop [this]
+    (assoc this :server nil)))
+
+(defn make-server
+  []
+  (map->HttpServer {}))
