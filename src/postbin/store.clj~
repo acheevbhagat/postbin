@@ -1,0 +1,12 @@
+(defrecord InMemoryState [data]
+
+  component/Lifecycle
+
+  (start [this]
+    (assoc this :data (atom{})))
+
+  (stop [this] this))
+
+(defn make-store
+  []
+  (map->InMemoryStore {}))
